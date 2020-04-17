@@ -13,3 +13,5 @@ yarn-error.log
 /static_html
 /.idea
 tasks.txt
+_ide_helper.php
+.phpstorm.meta.php
