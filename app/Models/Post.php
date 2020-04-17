@@ -2,10 +2,13 @@
 
 namespace App\Models;
 
+use App\Lib\Traits\Relationships\CommentsRelation;
 use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
 {
+    use CommentsRelation;
+
     protected $fillable = [
         'name',
         'content',
