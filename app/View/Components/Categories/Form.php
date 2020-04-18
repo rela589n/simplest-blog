@@ -1,10 +1,10 @@
 <?php
 
-namespace App\View\Components;
+namespace App\View\Components\Categories;
 
 use Illuminate\View\Component;
 
-class CategoryForm extends Component
+class Form extends Component
 {
     public $submitButtonText;
     public $sendMethod;
@@ -34,6 +34,6 @@ class CategoryForm extends Component
      */
     public function render()
     {
-        return view('components.category-form');
+        return view('components.categories.form');
     }
 }
