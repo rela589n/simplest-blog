@@ -14,9 +14,15 @@ class CategorySeeder extends Seeder
      */
     public function run()
     {
+        Category::create([
+            'name' => 'Uncategorized',
+            'description' => 'Posts without specified category.',
+            'uri_alias' => 'uncategorized'
+        ]);
+
         $faker = Faker\Factory::create();
 
-        for ($i = 0; $i < self::CATEGORIES_LIMIT; ++$i) {
+        for ($i = 1; $i < self::CATEGORIES_LIMIT; ++$i) {
             Category::create([
                 'name' => $faker->realText(15),
                 'description' => $faker->realText(300),
