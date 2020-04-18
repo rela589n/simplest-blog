@@ -52,8 +52,7 @@
             <button tabindex="-1" type="button" id="auto-generate-translit"
                     data-translit-source="#name"
                     data-translit-dest="#uri_alias"
-                    class="btn btn-primary btn-block"
-                    disabled="disabled">Auto
+                    class="btn btn-primary btn-block">Auto
             </button>
         </div>
     </div>
