@@ -1,5 +1,6 @@
 <?php
 
+use App\Providers\BladeDirectivesServiceProvider;
 use App\Providers\MorphMapsServiceProvider;
 
 return [
@@ -177,6 +178,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         MorphMapsServiceProvider::class,
+        BladeDirectivesServiceProvider::class,
 
     ],
 

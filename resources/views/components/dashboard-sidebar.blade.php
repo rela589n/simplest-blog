@@ -22,13 +22,15 @@
                            data-target="#submenu-2" aria-controls="submenu-2">
                             <i class="far fa-newspaper"></i>
                             Posts</a>
-                        <div id="submenu-2" class="submenu collapse">
+                        <div id="submenu-2" class="submenu collapse @ifroute('posts') show @endifroute">
                             <ul class="nav flex-column">
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('dashboard.posts.index') }}">All posts</a>
+                                    <a class="nav-link @ifroute('posts.index') active @endifroute"
+                                       href="{{ route('dashboard.posts.index') }}">All posts</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('dashboard.posts.create') }}">Add new</a>
+                                    <a class="nav-link  @ifroute('posts.create') active @endifroute"
+                                       href="{{ route('dashboard.posts.create') }}">Add new</a>
                                 </li>
                             </ul>
                         </div>
@@ -40,13 +42,15 @@
                            data-target="#submenu-3" aria-controls="submenu-3">
                             <i class="fas fa-stream"></i>
                             Categories</a>
-                        <div id="submenu-3" class="collapse submenu">
+                        <div id="submenu-3" class="submenu collapse @ifroute('categories') show @endifroute">
                             <ul class="nav flex-column">
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('dashboard.categories.index') }}">All categories</a>
+                                    <a class="nav-link @ifroute('categories.index') active @endifroute"
+                                       href="{{ route('dashboard.categories.index') }}">All categories</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('dashboard.categories.create') }}">Add new</a>
+                                    <a class="nav-link @ifroute('categories.create') active @endifroute"
+                                       href="{{ route('dashboard.categories.create') }}">Add new</a>
                                 </li>
                             </ul>
                         </div>
