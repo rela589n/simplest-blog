@@ -13,7 +13,38 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::prefix('/dashboard')
+    ->name('dashboard')
+    ->namespace('Dashboard')
+    ->group(function () {
 
-Route::get('/dashboard', function () {
-    return view('pages.dashboard.home');
-});
+        Route::prefix('/categories')
+            ->name('.categories')
+            ->group(function () {
+
+                Route::get('/create', function (){
+                    return 'create';
+                })->name('.create');
+
+                Route::get('/', function () {
+                    return 'index';
+                })->name('.index');
+            });
+
+        Route::prefix('/posts')
+            ->name('.posts')
+            ->group(function () {
+
+                Route::get('/create', function (){
+                    return 'create';
+                })->name('.create');
+
+                Route::get('/', function () {
+                    return 'index';
+                })->name('.index');
+            });
+
+        Route::get('/', function () {
+            return view('pages.dashboard.home');
+        });
+    });
