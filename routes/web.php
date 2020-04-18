@@ -39,7 +39,7 @@ Route::prefix('/dashboard')
             ->name('.posts')
             ->group(function () {
 
-                Route::get('/create', function (){
+                Route::get('/create', function () {
                     return 'create';
                 })->name('.create');
 
@@ -51,4 +51,20 @@ Route::prefix('/dashboard')
         Route::get('/', function () {
             return view('pages.dashboard.home');
         });
+    });
+
+Route::name('main')
+    ->namespace('Main')
+    ->group(function () {
+
+        Route::prefix('/categories')
+            ->name('.categories')
+            ->group(function () {
+
+                Route::get('/{category}', 'CategoriesController@show')->name('.show');
+
+                Route::get('/', 'CategoriesController@index')->name('.index');
+
+            });
+
     });

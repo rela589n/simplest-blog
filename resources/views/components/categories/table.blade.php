@@ -13,11 +13,15 @@
         @foreach($categories as $category)
             <tr>
                 <th scope="row">{{ $category->id }}</th>
-                <td><a href="">{{ $category->name }}</a></td>
+                <td>
+                    <a href="{{ route('main.categories.show', ['category' => $category->uri_alias]) }}">
+                        {{ $category->name }}
+                    </a>
+                </td>
                 <td><p>{{ $category->excerpt }}</p></td>
                 <td class="no-wrap">{{ $category->uri_alias }}</td>
                 <td>{{ $category->posts_count }}</td>
-                <td>
+                <td class="no-wrap">
                     <a href="{{ route('dashboard.categories.edit', $category) }}"><i class="far fa-edit"></i></a>
                     <a href="{{ route('dashboard.categories.destroy', $category) }}"
                        onclick="event.preventDefault(); $('#dashboard-category-delete-{{$category->id}}').submit();">
