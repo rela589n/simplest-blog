@@ -69,3 +69,7 @@ label.form-info.h3 {
 .no-wrap {
     white-space: nowrap;
 }
+
+.fz-1 {
+    font-size: 1rem;
+}

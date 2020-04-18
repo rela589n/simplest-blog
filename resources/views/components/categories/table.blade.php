@@ -1,4 +1,4 @@
-<div class="table-responsive">
+<div class="table-responsive fz-1">
     <table class="table mb-2">
         <thead>
         <tr>
