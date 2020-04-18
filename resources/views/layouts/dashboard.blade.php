@@ -9,7 +9,9 @@
 @section('content')
     <x-dashboard-sidebar/>
     <div class="dashboard-wrapper">
-        @yield('dashboard-content')
+        <div class="container-fluid dashboard-content">
+            @yield('dashboard-content')
+        </div>
     </div>
 @endsection
 
