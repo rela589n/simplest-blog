@@ -24,11 +24,13 @@ Route::prefix('/dashboard')
 
                 Route::get('/create', 'CategoriesController@create')->name('.create');
 
+                Route::get('/{category}/edit', 'CategoriesController@edit')->name('.edit');
+
+                Route::delete('/{category}', 'CategoriesController@destroy')->name('.destroy');
+
                 Route::post('/', 'CategoriesController@store')->name('.store');
 
-                Route::get('/', function () {
-                    return 'index';
-                })->name('.index');
+                Route::get('/', 'CategoriesController@index')->name('.index');
             });
 
         Route::prefix('/posts')

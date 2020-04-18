@@ -49,7 +49,7 @@ label.form-info.h3 {
 }
 
 .dashboard-wrapper {
-    min-height: 750px!important;
+    min-height: 750px !important;
 }
 
 .sidebar-dark.nav-left-sidebar .submenu .nav .nav-item .nav-link.active {
@@ -63,5 +63,9 @@ label.form-info.h3 {
 }
 
 .invalid-feedback * {
-    color: inherit!important;
+    color: inherit !important;
+}
+
+.no-wrap {
+    white-space: nowrap;
 }

@@ -9,6 +9,13 @@ use Illuminate\Http\Request;
 
 class CategoriesController extends Controller
 {
+    public function index()
+    {
+        $categories = Category::withCount('posts')->paginate(7);
+
+        return view('pages.dashboard.categories.index', compact('categories'));
+    }
+
     public function create()
     {
         return view('pages.dashboard.categories.create');
@@ -20,4 +27,12 @@ class CategoriesController extends Controller
 
         return redirect()->route('dashboard.categories.index');
     }
+
+    public function destroy($id)
+    {
+        Category::destroy($id);
+
+        return redirect()->route('dashboard.categories.index');
+    }
+
 }
