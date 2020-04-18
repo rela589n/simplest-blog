@@ -22,9 +22,9 @@ Route::prefix('/dashboard')
             ->name('.categories')
             ->group(function () {
 
-                Route::get('/create', function (){
-                    return view('pages.dashboard.categories.create');
-                })->name('.create');
+                Route::get('/create', 'CategoriesController@create')->name('.create');
+
+                Route::post('/', 'CategoriesController@store')->name('.store');
 
                 Route::get('/', function () {
                     return 'index';
