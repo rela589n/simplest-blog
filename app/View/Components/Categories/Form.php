@@ -2,6 +2,7 @@
 
 namespace App\View\Components\Categories;
 
+use App\Models\Category;
 use Illuminate\View\Component;
 
 class Form extends Component
@@ -10,6 +11,7 @@ class Form extends Component
     public $sendMethod;
     public $sendAction;
     public $submitSize;
+    public $category;
 
     /**
      * Create a new component instance.
@@ -18,13 +20,15 @@ class Form extends Component
      * @param string $sendMethod
      * @param string $sendAction
      * @param int $submitSize
+     * @param Category|null $category
      */
-    public function __construct($submitButtonText = 'Create', $sendMethod = 'POST', $sendAction = '', $submitSize = 12)
+    public function __construct($submitButtonText, $sendMethod = 'POST', $sendAction = '', $submitSize = 12, $category = null)
     {
         $this->submitButtonText = $submitButtonText;
         $this->sendMethod = $sendMethod;
         $this->sendAction = $sendAction;
         $this->submitSize = $submitSize;
+        $this->category = $category;
     }
 
     /**

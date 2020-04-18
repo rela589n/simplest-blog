@@ -26,6 +26,8 @@ Route::prefix('/dashboard')
 
                 Route::get('/{category}/edit', 'CategoriesController@edit')->name('.edit');
 
+                Route::put('/{category}', 'CategoriesController@update')->name('.update');
+
                 Route::delete('/{category}', 'CategoriesController@destroy')->name('.destroy');
 
                 Route::post('/', 'CategoriesController@store')->name('.store');

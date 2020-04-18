@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Category\StoreCategoryRequest;
+use App\Http\Requests\Category\UpdateCategoryRequest;
 use App\Models\Category;
-use Illuminate\Http\Request;
 
 class CategoriesController extends Controller
 {
@@ -35,4 +35,16 @@ class CategoriesController extends Controller
         return redirect()->route('dashboard.categories.index');
     }
 
+    public function edit(Category $category)
+    {
+        return view('pages.dashboard.categories.edit', compact('category'));
+    }
+
+    public function update(UpdateCategoryRequest $request)
+    {
+        $category = $request->category();
+        $category->update($request->validated());
+
+        return redirect()->route('dashboard.categories.index');
+    }
 }
