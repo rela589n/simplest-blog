@@ -2,8 +2,10 @@
 
 namespace App\Http\Requests\Category;
 
+use App\Models\Category;
 use App\Rules\Containers\CategoryRulesContainer;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class StoreCategoryRequest extends FormRequest
 {
@@ -16,7 +18,7 @@ class StoreCategoryRequest extends FormRequest
     public function rules(CategoryRulesContainer $rules)
     {
         $rules = $rules->getRules();
-        $rules['uri_alias'][] = 'unique:categories';
+        $rules['uri_alias'][] = Rule::unique(Category::tableName());
 
         return $rules;
     }

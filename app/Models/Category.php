@@ -3,12 +3,14 @@
 namespace App\Models;
 
 use App\Lib\Traits\Relationships\CommentsRelation;
+use App\Lib\Traits\TableNameAccessor;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 
 class Category extends Model
 {
     use CommentsRelation;
+    use TableNameAccessor;
 
     protected $fillable = ['name', 'description', 'uri_alias'];
 
