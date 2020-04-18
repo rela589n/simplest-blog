@@ -23,7 +23,7 @@ Route::prefix('/dashboard')
             ->group(function () {
 
                 Route::get('/create', function (){
-                    return 'create';
+                    return view('pages.dashboard.categories.create');
                 })->name('.create');
 
                 Route::get('/', function () {
