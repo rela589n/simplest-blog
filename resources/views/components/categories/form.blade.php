@@ -66,3 +66,9 @@
         </x-buttons.submit>
     @show
 </form>
+
+@section('bottom_scripts')
+    @parent
+    <script src="{{ asset('js/jquery.liTranslit.js') }}"></script>
+    <script src="{{ asset('js/uri-autogenerator.js') }}"></script>
+@endsection
