@@ -39,13 +39,18 @@ Route::prefix('/dashboard')
             ->name('.posts')
             ->group(function () {
 
-                Route::get('/create', function () {
-                    return 'create';
-                })->name('.create');
+                Route::get('/create', 'PostsController@create')->name('.create');
 
-                Route::get('/', function () {
-                    return 'index';
-                })->name('.index');
+                Route::get('/{post}/edit', 'PostsController@edit')->name('.edit');
+
+                Route::put('/{post}', 'PostsController@update')->name('.update');
+
+                Route::delete('/{post}', 'PostsController@destroy')->name('.destroy');
+
+                Route::post('/', 'PostsController@store')->name('.store');
+
+                Route::get('/', 'PostsController@index')->name('.index');
+
             });
 
         Route::get('/', function () {
@@ -64,6 +69,16 @@ Route::name('main')
                 Route::get('/{category}', 'CategoriesController@show')->name('.show');
 
                 Route::get('/', 'CategoriesController@index')->name('.index');
+
+            });
+
+        Route::prefix('/posts')
+            ->name('.posts')
+            ->group(function () {
+
+                Route::get('/{post}', 'PostsController@show')->name('.show');
+
+                Route::get('/', 'PostsController@index')->name('.index');
 
             });
 
