@@ -82,4 +82,5 @@ Route::name('main')
 
             });
 
+        Route::redirect('/', '/posts');
     });

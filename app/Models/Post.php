@@ -61,4 +61,17 @@ class Post extends Model
     {
         return $this->image_path ? asset("storage/$this->image_path") : null;
     }
+
+    public function getDateReadableAttribute()
+    {
+        return sprintf("%s <span>%s</span>",
+            $this->created_at->format('d'),
+            $this->created_at->format('M Y')
+        );
+    }
+
+    public function getCommentsCountReadableAttribute()
+    {
+        return sprintf('%d %s', $this->comments_count, $this->comments_count > 1 ? 'comments' : 'comment');
+    }
 }
