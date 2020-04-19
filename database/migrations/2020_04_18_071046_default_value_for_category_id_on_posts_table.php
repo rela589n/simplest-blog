@@ -40,18 +40,19 @@ class DefaultValueForCategoryIdOnPostsTable extends Migration
     {
         Schema::table($this->table, function (Blueprint $table) {
             $table->dropForeign(['category_id']);
-            $table->dropColumn(['category_id']);
-        });
-
-        Schema::table($this->table, function (Blueprint $table) {
-            $table->unsignedBigInteger('category_id')
-                ->after('image_path');
 
             $table->foreign('category_id')
                 ->references('id')
                 ->on('categories')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
+        });
+
+        Schema::table($this->table, function (Blueprint $table) {
+            $table->unsignedBigInteger('category_id')
+                ->nullable(false)
+                ->default(NULL)
+                ->change();
         });
     }
 }
