@@ -4,9 +4,10 @@ namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Posts\StorePostRequest;
+use App\Http\Requests\Posts\UpdatePostRequest;
 use App\Models\Category;
 use App\Models\Post;
-use Illuminate\Http\Request;
+use Illuminate\Http\UploadedFile;
 
 class PostsController extends Controller
 {
@@ -27,38 +28,32 @@ class PostsController extends Controller
     public function store(StorePostRequest $request)
     {
         $attributes = $request->validated();
-        $attributes['image_path'] = $attributes['image']->store('uploads', 'public');
+        $attributes['image_path'] = $this->storeImage($attributes['image']);
 
         Post::create($attributes);
 
         return redirect()->route('dashboard.posts.index');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+    public function edit(Post $post)
     {
-        //
+        $categories = Category::all();
+
+        return view('pages.dashboard.posts.edit', compact('post', 'categories'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
+    public function update(UpdatePostRequest $request)
     {
-        //
-    }
+        $attributes = $request->validated();
 
-    public function update(Request $request, $id)
-    {
-        //
+        if (isset($attributes['image'])) {
+            $attributes['image_path'] = $this->storeImage($attributes['image']);
+        }
+
+        $post = $request->blogPost();
+        $post->update($attributes);
+
+        return redirect()->route('main.posts.show', ['post' => $post->uri_alias]);
     }
 
     public function destroy($id)
@@ -68,4 +63,8 @@ class PostsController extends Controller
         return redirect()->back();
     }
 
+    private function storeImage(UploadedFile $image)
+    {
+        return $image->store('uploads', 'public');
+    }
 }
