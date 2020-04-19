@@ -22,7 +22,11 @@ class Form extends Component
      * @param int $submitSize
      * @param Category|null $category
      */
-    public function __construct($submitButtonText, $sendMethod = 'POST', $sendAction = '', $submitSize = 12, $category = null)
+    public function __construct(?Category $category,
+                                string $submitButtonText,
+                                string $sendMethod = 'POST',
+                                string $sendAction = '',
+                                int $submitSize = 12)
     {
         $this->submitButtonText = $submitButtonText;
         $this->sendMethod = $sendMethod;
