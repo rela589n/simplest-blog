@@ -11,7 +11,7 @@ class CategoriesController extends Controller
 {
     public function index()
     {
-        $categories = Category::withCount('posts')->paginate(7);
+        $categories = Category::withCount('posts')->orderBy('id', 'DESC')->paginate(7);
 
         return view('pages.dashboard.categories.index', compact('categories'));
     }
