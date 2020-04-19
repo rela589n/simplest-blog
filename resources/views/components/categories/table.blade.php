@@ -27,7 +27,9 @@
                        onclick="event.preventDefault(); $('#dashboard-category-delete-{{$category->id}}').submit();">
                         <i class="fas fa-trash-alt"></i>
                     </a>
-                    <x-categories.delete-form :category="$category"/>
+                    <x-delete-form
+                        :id="'dashboard-category-delete-'. $category->id"
+                        :action="route('dashboard.categories.destroy', $category)"/>
                 </td>
             </tr>
         @endforeach
