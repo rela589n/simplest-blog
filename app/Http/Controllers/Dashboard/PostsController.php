@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Posts\StorePostRequest;
+use App\Models\Category;
 use App\Models\Post;
 use Illuminate\Http\Request;
 
@@ -10,30 +12,26 @@ class PostsController extends Controller
 {
     public function index()
     {
-        $posts = Post::paginate(10);
+        $posts = Post::orderBy('id', 'DESC')->paginate(10);
 
         return view('pages.dashboard.posts.index', compact('posts'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
+        $categories = Category::all();
+
+        return view('pages.dashboard.posts.create', compact('categories'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function store(StorePostRequest $request)
     {
-        //
+        $attributes = $request->validated();
+        $attributes['image_path'] = $attributes['image']->store('uploads', 'public');
+
+        Post::create($attributes);
+
+        return redirect()->route('dashboard.posts.index');
     }
 
     /**
