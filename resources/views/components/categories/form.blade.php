@@ -22,7 +22,8 @@
         <div class="col-12">
             <textarea id="description" name="description"
                       class="form-control @error('description') is-invalid @enderror"
-                      rows="3" placeholder="Category description">{{ old('description', $category->description ?? '') }}</textarea>
+                      rows="3" placeholder="Category description"
+                      required="required">{{ old('description', $category->description ?? '') }}</textarea>
 
             @error('description')
             <span class="invalid-feedback" role="alert">
