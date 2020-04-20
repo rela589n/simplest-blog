@@ -14,6 +14,6 @@ class PostsController extends Controller
         $posts = Post::withCount('comments')->orderBy('id', 'DESC')->paginate(10);
         $categories = Category::all();
 
-        return view('pages.main.home', compact('posts', 'categories'));
+        return view('pages.main.posts.index', compact('posts', 'categories'));
     }
 }
