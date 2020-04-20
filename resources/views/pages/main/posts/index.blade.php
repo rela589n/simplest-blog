@@ -25,7 +25,7 @@
 @endsection
 
 @section('main-sidebar')
-    <x-main.sidebar :categories="$categories"/>
+    <x-main.sidebar/>
 @endsection
 
 @section('bottom_scripts')

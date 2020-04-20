@@ -2,6 +2,7 @@
 
 namespace App\View\Components\Main;
 
+use App\Models\Category;
 use Illuminate\View\Component;
 
 class Sidebar extends Component
@@ -15,10 +16,19 @@ class Sidebar extends Component
      * @param $categories
      * @param array $recentComments
      */
-    public function __construct($categories, $recentComments = [])
+    public function __construct($categories = [], $recentComments = [])
     {
         $this->categories = $categories;
         $this->recentComments = $recentComments;
+
+        $this->handleCategories();
+    }
+
+    private function handleCategories()
+    {
+        if (empty($this->categories)) {
+            $this->categories = Category::all(); // todo repository
+        }
     }
 
     /**
