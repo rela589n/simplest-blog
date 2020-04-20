@@ -2,7 +2,7 @@
     <div id="tooplate_menu">
         <ul>
             <li>
-                <a href="{{ route('main') }}">Home</a>
+                <a href="{{ route('main.home') }}">Home</a>
             </li>
             <li>
                 <a href="{{ route('main.categories.index') }}"
@@ -12,7 +12,7 @@
                 <a href="{{ route('main.posts.index') }}" class="@ifroute('posts') current @endifroute">Posts</a>
             </li>
             <li>
-                <a href="{{ route('dashboard') }}" class="last @ifroute('dashboard') current @endifroute">Dashboard</a>
+                <a href="{{ route('dashboard.home') }}" class="last @ifroute('dashboard') current @endifroute">Dashboard</a>
             </li>
         </ul>
     </div>
