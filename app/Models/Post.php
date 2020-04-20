@@ -77,6 +77,6 @@ class Post extends Model
 
     public function getCommentsCountReadableAttribute()
     {
-        return sprintf('%d %s', $this->comments_count, $this->comments_count > 1 ? 'comments' : 'comment');
+        return sprintf('%d %s', $this->comments_count, $this->comments_count == 1 ? 'comment' : 'comments');
     }
 }
