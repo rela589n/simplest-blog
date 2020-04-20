@@ -1,9 +1,10 @@
 @extends('components.posts.representations.abstract')
+@props(['post'])
 
 @section('post-content')
     <p>{{ $post->excerpt }}</p>
-@endsection
+@overwrite
 
 @section('post-additions')
     <a href="{{ route('main.posts.show', ['post' => $post->uri_alias]) }}" class="more float_r">Continue Reading</a>
-@endsection
+@overwrite
