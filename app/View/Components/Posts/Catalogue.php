@@ -4,7 +4,7 @@ namespace App\View\Components\Posts;
 
 use Illuminate\View\Component;
 
-class FullViewList extends Component
+class Catalogue extends Component
 {
     public $posts;
 
@@ -25,6 +25,6 @@ class FullViewList extends Component
      */
     public function render()
     {
-        return view('components.posts.full-view-list');
+        return view('components.posts.catalogue');
     }
 }
