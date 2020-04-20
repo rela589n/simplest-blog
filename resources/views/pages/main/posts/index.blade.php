@@ -17,7 +17,7 @@
             </div>
         </div>
 
-        <x-posts.full-view-list :posts="$posts"/>
+        <x-posts.catalogue :posts="$posts"/>
         {{ $posts->links() }}
 
         <div class="cleaner"></div>

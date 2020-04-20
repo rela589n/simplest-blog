@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Lib\Traits\Attributes\ExcerptBySubstring;
 use App\Lib\Traits\Relationships\CommentsRelation;
+use App\Lib\Traits\SlugScope;
 use App\Lib\Traits\TableNameAccessor;
 use Illuminate\Database\Eloquent\Model;
 
@@ -35,11 +36,15 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Post whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Post whereUriAlias($value)
  * @mixin \Eloquent
+ * @property-read mixed $comments_count_readable
+ * @property-read mixed $date_readable
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Post whereSlug($slug)
  */
 class Post extends Model
 {
     use CommentsRelation;
     use TableNameAccessor;
+    use SlugScope;
     use ExcerptBySubstring;
 
     protected $excerptAttribute = 'content';

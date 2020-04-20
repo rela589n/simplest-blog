@@ -14,4 +14,11 @@ class PostsController extends Controller
 
         return view('pages.main.posts.index', compact('posts'));
     }
+
+    public function show(Request $request)
+    {
+        $post = Post::whereSlug($request->route('post'))->firstOrFail();
+
+        return view('pages.main.posts.show', compact('post'));
+    }
 }
