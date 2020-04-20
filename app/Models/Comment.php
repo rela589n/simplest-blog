@@ -38,4 +38,12 @@ class Comment extends Model
     {
         return $this->morphTo();
     }
+
+    public function getDateReadableAttribute()
+    {
+        return sprintf('<span class="date">%s</span><span class="time">%s</span>',
+            $this->created_at->format('M jS, Y'),
+            $this->created_at->format('h:i a')
+        );
+    }
 }

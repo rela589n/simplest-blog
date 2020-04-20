@@ -17,7 +17,7 @@ class PostsController extends Controller
 
     public function show(Request $request)
     {
-        $post = Post::whereSlug($request->route('post'))->firstOrFail();
+        $post = Post::whereSlug($request->route('post'))->with('comments')->firstOrFail();
 
         return view('pages.main.posts.show', compact('post'));
     }
