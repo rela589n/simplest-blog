@@ -40,6 +40,7 @@ class Category extends Model
     use CountRelations;
     use CommentsRelation;
     use TableNameAccessor;
+    use DateReadable;
     use ExcerptBySubstring;
 
     protected $excerptAttribute = 'description';
@@ -49,5 +50,15 @@ class Category extends Model
     public function posts()
     {
         return $this->hasMany(Post::class);
+    }
+
+    public function getPostsCountAttribute($count)
+    {
+        return $this->getRelationsCount('posts', $count);
+    }
+
+    public function getPostsCountReadableAttribute()
+    {
+        return $this->posts_count . ' ' . Str::plural('post', $this->posts_count);
     }
 }
