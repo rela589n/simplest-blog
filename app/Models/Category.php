@@ -6,6 +6,7 @@ use App\Lib\Traits\Attributes\DateReadable;
 use App\Lib\Traits\Attributes\ExcerptBySubstring;
 use App\Lib\Traits\Relationships\CommentsRelation;
 use App\Lib\Traits\Relationships\CountRelations;
+use App\Lib\Traits\SlugScope;
 use App\Lib\Traits\TableNameAccessor;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
@@ -34,12 +35,18 @@ use Illuminate\Support\Str;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Category whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Category whereUriAlias($value)
  * @mixin \Eloquent
+ * @property-read mixed $date_readable
+ * @property-read mixed $posts_count_readable
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Category whereSlug($slug)
  */
 class Category extends Model
 {
     use CountRelations;
     use CommentsRelation;
+
     use TableNameAccessor;
+    use SlugScope;
+
     use DateReadable;
     use ExcerptBySubstring;
 

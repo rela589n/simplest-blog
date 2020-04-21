@@ -27,6 +27,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Comment whereUpdatedAt($value)
  * @mixin \Eloquent
  * @property-read mixed $date_readable
+ * @property-read mixed $author_image_url
  */
 class Comment extends Model
 {
