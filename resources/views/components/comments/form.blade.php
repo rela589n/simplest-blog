@@ -21,3 +21,9 @@
 
     <input type="submit" name="Submit" value="Submit" class="submit_btn"/>
 </form>
+
+@section('bottom_scripts')
+    @parent
+    <script src="{{ asset('js/blog-comment.js') }}"></script>
+    <script src="{{ asset('js/leave-comment.js') }}"></script>
+@endsection

@@ -24,6 +24,4 @@
 
 @section('bottom_scripts')
     <script src="{{ asset('vendor/jquery/jquery-3.3.1.min.js') }}"></script>
-    <script src="{{ asset('js/blog-comment.js') }}"></script>
-    <script src="{{ asset('js/leave-comment.js') }}"></script>
-@overwrite
+@endsection
