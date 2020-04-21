@@ -2,7 +2,9 @@
 
 namespace App\Models;
 
+use App\Lib\Traits\Attributes\ExcerptBySubstring;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 /**
  * App\Models\Comment
@@ -31,6 +33,10 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Comment extends Model
 {
+    use ExcerptBySubstring;
+    private $excerptAttribute = 'content';
+    private $excerptSize = 7;
+
     protected $fillable = ['author_name', 'content', 'commentable_type', 'commentable_id'];
     protected $appends = ['date_readable', 'author_image_url'];
 
@@ -53,5 +59,12 @@ class Comment extends Model
     public function getAuthorImageUrlAttribute()
     {
         return asset('img/avator.png');
+    }
+
+    public function getCommentableLinkAttribute()
+    {
+        $plural = Str::plural($this->commentable_type);
+
+        return route("main.${plural}.show", [$this->commentable_type => $this->commentable->uri_alias]);
     }
 }

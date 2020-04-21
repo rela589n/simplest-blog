@@ -4,7 +4,7 @@
             <a href="#"><img src="{{ asset('img/tooplate_250x250_ad.jpg') }}" alt="250x250 ad"/></a>
         </div>
 
-        @if(count($categories) > 0 && $showCategories)
+        @if($showCategories && count($categories) > 0)
             <x-main.shallow.sidebar-box title="Categories">
                 <ul class="tooplate_list">
                     @foreach($categories as $category)
@@ -16,11 +16,11 @@
             </x-main.shallow.sidebar-box>
         @endif
 
-        @if(count($recentComments) > 0)
+        @if($showRecentComments && count($recentComments) > 0)
             <x-main.shallow.sidebar-box title="Recent comments">
                 @foreach($recentComments as $comment)
                     <div class="recent_comment_box @if($loop->last) last_recent_comment_box @endif">
-                        <a href="#">{{ $comment->commentable->name }}</a> {{-- todo link --}}
+                        <a href="{{ $comment->commentable_link }}">{{ $comment->commentable->name }}</a> {{-- todo link --}}
                         <p>{{ $comment->excerpt }}</p>
                     </div>
                 @endforeach
