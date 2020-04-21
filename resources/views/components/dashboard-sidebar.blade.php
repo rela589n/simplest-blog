@@ -8,6 +8,11 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('main.home') }}">
+                            <i class="fas fa-globe"></i> Go to site
+                        </a>
+                    </li>
                     <li class="nav-divider">
                         Menu
                     </li>
