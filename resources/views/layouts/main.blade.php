@@ -11,9 +11,15 @@
 
         <x-main.menu/>
         <div id="tooplate_main">
-            @yield('main-content')
+            <div id="tooplate_content">
+                @yield('main-content')
 
-            @yield('main-sidebar')
+                <div class="cleaner"></div>
+            </div>
+
+            @section('main-sidebar')
+                <x-main.sidebar/>
+            @show
 
             <div class="cleaner"></div>
         </div>
