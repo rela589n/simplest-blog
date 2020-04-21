@@ -9,16 +9,19 @@ class Sidebar extends Component
 {
     public $categories;
     public $recentComments;
+    public $showCategories;
 
     /**
      * Create a new component instance.
      *
-     * @param $categories
+     * @param array $categories
+     * @param bool $showCategories
      * @param array $recentComments
      */
-    public function __construct($categories = [], $recentComments = [])
+    public function __construct($categories = [], $showCategories = true, $recentComments = [])
     {
         $this->categories = $categories;
+        $this->showCategories = $showCategories;
         $this->recentComments = $recentComments;
 
         $this->handleCategories();
@@ -26,7 +29,7 @@ class Sidebar extends Component
 
     private function handleCategories()
     {
-        if (empty($this->categories)) {
+        if (empty($this->categories) && $this->showCategories) {
             $this->categories = Category::all(); // todo repository
         }
     }

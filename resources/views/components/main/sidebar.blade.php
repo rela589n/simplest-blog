@@ -4,7 +4,7 @@
             <a href="#"><img src="{{ asset('img/tooplate_250x250_ad.jpg') }}" alt="250x250 ad"/></a>
         </div>
 
-        @if(count($categories) > 0)
+        @if(count($categories) > 0 && $showCategories)
             <x-main.shallow.sidebar-box title="Categories">
                 <ul class="tooplate_list">
                     @foreach($categories as $category)
