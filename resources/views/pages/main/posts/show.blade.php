@@ -9,6 +9,15 @@
             <x-comments.catalogue :comments="$post->comments"/>
         </div>
 
+        <div id="comment_form">
+            <h3>Leave your comment</h3>
+
+            <x-comments.form :send-action="route('api.comments.store')"
+                             :commentable-id="$post->id"
+                             commentable-type="post"
+                             send-method="POST"/>
+        </div>
+
         <div class="cleaner"></div>
     </div>
 @endsection
@@ -16,3 +25,9 @@
 @section('main-sidebar')
     <x-main.sidebar/>
 @endsection
+
+@section('bottom_scripts')
+    <script src="{{ asset('vendor/jquery/jquery-3.3.1.min.js') }}"></script>
+    <script src="{{ asset('js/blog-comment.js') }}"></script>
+    <script src="{{ asset('js/leave-comment.js') }}"></script>
+@overwrite
