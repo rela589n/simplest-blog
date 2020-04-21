@@ -7,6 +7,7 @@ use App\Lib\Traits\Relationships\CommentsRelation;
 use App\Lib\Traits\SlugScope;
 use App\Lib\Traits\TableNameAccessor;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 /**
  * App\Models\Post
@@ -77,6 +78,6 @@ class Post extends Model
 
     public function getCommentsCountReadableAttribute()
     {
-        return sprintf('%d %s', $this->comments_count, $this->comments_count == 1 ? 'comment' : 'comments');
+        return $this->comments_count.  ' ' . Str::plural('comment', $this->comments_count);
     }
 }
