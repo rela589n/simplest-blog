@@ -3,13 +3,16 @@
 namespace App\View\Components\Main;
 
 use App\Models\Category;
+use App\Models\Comment;
 use Illuminate\View\Component;
 
 class Sidebar extends Component
 {
     public $categories;
-    public $recentComments;
     public $showCategories;
+
+    public $recentComments;
+    public $showRecentComments;
 
     /**
      * Create a new component instance.
@@ -17,20 +20,31 @@ class Sidebar extends Component
      * @param array $categories
      * @param bool $showCategories
      * @param array $recentComments
+     * @param bool $showRecentComments
      */
-    public function __construct($categories = [], $showCategories = true, $recentComments = [])
+    public function __construct($categories = [], $showCategories = true, $recentComments = [], $showRecentComments = true)
     {
         $this->categories = $categories;
         $this->showCategories = $showCategories;
+
         $this->recentComments = $recentComments;
+        $this->showRecentComments = $showRecentComments;
 
         $this->handleCategories();
+        $this->handleComments();
     }
 
     private function handleCategories()
     {
-        if (empty($this->categories) && $this->showCategories) {
+        if ($this->showCategories && empty($this->categories)) {
             $this->categories = Category::all(); // todo repository
+        }
+    }
+
+    private function handleComments()
+    {
+        if ($this->showRecentComments && empty($this->recentComments)) {
+            $this->recentComments = Comment::orderBy('id', 'DESC')->limit(5)->get();
         }
     }
 
