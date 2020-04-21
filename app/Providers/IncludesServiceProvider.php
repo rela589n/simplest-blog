@@ -14,5 +14,6 @@ class IncludesServiceProvider extends ServiceProvider
     public function boot()
     {
         require app_path('Includes/helpers.php');
+        require app_path('Includes/debug-helpers.php');
     }
 }
