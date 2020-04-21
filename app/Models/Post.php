@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Lib\Traits\Attributes\DateReadable;
 use App\Lib\Traits\Attributes\ExcerptBySubstring;
 use App\Lib\Traits\Relationships\CommentsRelation;
 use App\Lib\Traits\SlugScope;
@@ -46,6 +47,7 @@ class Post extends Model
     use CommentsRelation;
     use TableNameAccessor;
     use SlugScope;
+    use DateReadable;
     use ExcerptBySubstring;
 
     protected $excerptAttribute = 'content';
@@ -66,14 +68,6 @@ class Post extends Model
     public function getImageUrlAttribute()
     {
         return $this->image_path ? asset("storage/$this->image_path") : null;
-    }
-
-    public function getDateReadableAttribute()
-    {
-        return sprintf("%s <span>%s</span>",
-            $this->created_at->format('d'),
-            $this->created_at->format('M Y')
-        );
     }
 
     public function getCommentsCountReadableAttribute()
