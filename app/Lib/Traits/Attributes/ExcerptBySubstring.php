@@ -12,6 +12,6 @@ trait ExcerptBySubstring
     {
         $attrName = $this->excerptAttribute;
 
-        return Str::words($this->$attrName, 25);
+        return Str::words($this->$attrName,  $this->excerptSize ?? 25);
     }
 }
