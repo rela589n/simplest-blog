@@ -1,3 +1,4 @@
+@props(['post'])
 <div {{ $attributes->merge(['class' => 'post_box']) }}>
     <div class="date_box">
         <div class="date">{!! $post->date_readable !!}</div>

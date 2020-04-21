@@ -1,5 +1,4 @@
 @extends('components.posts.representations.abstract')
-@props(['post'])
 
 @section('post-content')
     <p>{{ $post->excerpt }}</p>
