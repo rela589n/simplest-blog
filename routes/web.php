@@ -39,3 +39,13 @@ Route::name('main.')
 
         Route::redirect('/', '/posts')->name('home');
     });
+
+Route::prefix('/api')
+    ->name('api.')
+    ->namespace('API')
+    ->group(function () {
+
+        Route::apiResource('comments', 'CommentsController')
+            ->only('store');
+
+    });
