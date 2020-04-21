@@ -10,7 +10,7 @@ class PostsController extends Controller
 {
     public function index()
     {
-        $posts = Post::withCount('comments')->orderBy('id', 'DESC')->paginate(10);
+        $posts = Post::withCount('comments')->with('category')->orderBy('id', 'DESC')->paginate(10);
 
         return view('pages.main.posts.index', compact('posts'));
     }
