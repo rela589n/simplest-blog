@@ -1,11 +1,11 @@
-@if(count($comments) > 0)
-    <ol class="comments first_level">
-        @foreach($comments as $comment)
-            <li>
-                <x-comments.representations.full :comment="$comment"/>
-            </li>
-        @endforeach
-    </ol>
-@else
-    <p>No comments yet. You can leave the first one!</p>
-@endif
+<ol class="comments first_level">
+    @forelse($comments as $comment)
+        <li>
+            <x-comments.representations.full :comment="$comment"/>
+        </li>
+    @empty
+        <li class="no-comments">
+            <p>No comments yet. You can leave the first one!</p>
+        </li>
+    @endforelse
+</ol>
