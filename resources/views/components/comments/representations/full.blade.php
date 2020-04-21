@@ -1,6 +1,6 @@
 <div class="comment_box commentbox1">
     <div class="gravatar">
-        <img src="{{ asset('img/avator.png') }}" alt="author"/>
+        <img src="{{ $comment->author_image_url }}" alt="author"/>
     </div>
 
     <div class="comment_text">

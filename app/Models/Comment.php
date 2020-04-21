@@ -26,10 +26,12 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Comment whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Comment whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @property-read mixed $date_readable
  */
 class Comment extends Model
 {
-    protected $fillable = ['author_name', 'content'];
+    protected $fillable = ['author_name', 'content', 'commentable_type', 'commentable_id'];
+    protected $appends = ['date_readable', 'author_image_url'];
 
     /**
      * Get the owning commentable model.
@@ -45,5 +47,10 @@ class Comment extends Model
             $this->created_at->format('M jS, Y'),
             $this->created_at->format('h:i a')
         );
+    }
+
+    public function getAuthorImageUrlAttribute()
+    {
+        return asset('img/avator.png');
     }
 }
