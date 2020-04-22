@@ -44,7 +44,10 @@ class Sidebar extends Component
     private function handleComments()
     {
         if ($this->showRecentComments && empty($this->recentComments)) {
-            $this->recentComments = Comment::orderBy('id', 'DESC')->limit(5)->get();
+            $this->recentComments = Comment::with('commentable')
+                ->orderBy('id', 'DESC')
+                ->limit(5)
+                ->get();
         }
     }
 
