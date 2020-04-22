@@ -170,6 +170,7 @@ return [
          * Package Service Providers...
          */
         Barryvdh\Debugbar\ServiceProvider::class,
+        Jenssegers\Agent\AgentServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -238,6 +239,7 @@ return [
          * Package Facades...
          */
 //        'Debugbar'     => Barryvdh\Debugbar\Facade::class,
+        'Agent'        => Jenssegers\Agent\Facades\Agent::class,
     ],
 
 ];
