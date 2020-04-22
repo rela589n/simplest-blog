@@ -2,14 +2,11 @@
     <div id="tooplate_footer">
 
         <div class="col_w280">
-            <h5>Pages</h5>
+            <h5>Project visits</h5>
             <ul class="tooplate_list">
-                <li><a href="#">Etiam commodo</a></li>
-                <li><a href="#">Praesent adipiscing</a></li>
-                <li><a href="#">Duis sed justo</a></li>
-                <li><a href="#">Mauris vulputate</a></li>
-                <li><a href="#">Mauris dignissim</a></li>
-                <li><a href="#">In adipiscing purus</a></li>
+                @foreach($visits as $visit)
+                    <li>{{ $visit->browser }}: {{ $visit->total }}</li>
+                @endforeach
             </ul>
         </div>
 
