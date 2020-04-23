@@ -1,9 +1,5 @@
 <?php
 
-use App\Providers\BladeDirectivesServiceProvider;
-use App\Providers\IncludesServiceProvider;
-use App\Providers\MorphMapsServiceProvider;
-
 return [
 
     /*
@@ -180,9 +176,9 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-        MorphMapsServiceProvider::class,
-        BladeDirectivesServiceProvider::class,
-        IncludesServiceProvider::class,
+        App\Providers\MorphMapsServiceProvider::class,
+        App\Providers\BladeDirectivesServiceProvider::class,
+        App\Providers\IncludesServiceProvider::class,
     ],
 
     /*
