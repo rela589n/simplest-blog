@@ -14,9 +14,8 @@ class CategoriesController extends Controller
         return view('pages.main.categories.index', compact('categories'));
     }
 
-    public function show($id)
+    public function show(Category $category)
     {
-        $category = Category::whereSlug($id)->firstOrFail();
         $posts = $category->posts()->paginate(5);
 
         return view('pages.main.categories.show', compact('category', 'posts'));

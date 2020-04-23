@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Main;
 
 use App\Http\Controllers\Controller;
 use App\Models\Post;
-use Illuminate\Http\Request;
 
 class PostsController extends Controller
 {
@@ -15,9 +14,9 @@ class PostsController extends Controller
         return view('pages.main.posts.index', compact('posts'));
     }
 
-    public function show(Request $request)
+    public function show(Post $post)
     {
-        $post = Post::whereSlug($request->route('post'))->with('comments')->firstOrFail();
+        $post->load('comments');
 
         return view('pages.main.posts.show', compact('post'));
     }

@@ -32,10 +32,12 @@ Route::name('main.')
     ->group(function () {
 
         Route::resource('categories', 'CategoriesController')
-            ->only(['show', 'index']);
+            ->only(['show', 'index'])
+            ->parameters(['categories' => 'category:uri_alias']);
 
         Route::resource('posts', 'PostsController')
-            ->only(['show', 'index']);
+            ->only(['show', 'index'])
+            ->parameters(['posts' => 'post:uri_alias']);
 
         Route::redirect('/', '/posts')->name('home');
     });
