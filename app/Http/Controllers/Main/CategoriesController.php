@@ -16,7 +16,12 @@ class CategoriesController extends Controller
 
     public function show(Category $category)
     {
-        $posts = $category->posts()->paginate(5);
+        $posts = $category
+            ->posts()
+            ->withCount('comments')
+            ->get()
+            ->setRelation('category', $category)
+            ->paginate(2);
 
         return view('pages.main.categories.show', compact('category', 'posts'));
     }
