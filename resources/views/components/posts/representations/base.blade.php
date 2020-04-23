@@ -7,9 +7,13 @@
 
     <div class="post_box_right">
         <h2>{{ $post->name }}</h2>
-        <div class="post_meta">
-            <a href="{{ route('main.categories.show', ['category' => $post->category->uri_alias]) }}">{{ $post->category->name }}</a>
-        </div>
+
+        @section('post-meta')
+            <div class="post_meta">
+                <a href="{{ route('main.categories.show', ['category' => $post->category->uri_alias]) }}">{{ $post->category->name }}</a>
+            </div>
+        @show
+
         <img src="{{ $post->image_url }}" alt="Image"/>
 
         @yield('post-content')

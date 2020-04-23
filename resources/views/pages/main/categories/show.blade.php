@@ -7,7 +7,7 @@
         <h2>List of articles by category "{{ $category->name }}":</h2>
         <br><br>
 
-        <x-posts.catalogue :posts="$posts"/>
+        <x-posts.catalogs.in-category :posts="$posts"/>
         {{ $posts->links() }}
 
         <h3>Category comments</h3>

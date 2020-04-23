@@ -3,7 +3,7 @@
 @section('main-content')
     <x-main.slider/>
 
-    <x-posts.catalogue :posts="$posts"/>
+    <x-posts.catalogs.excerpt :posts="$posts"/>
     {{ $posts->links() }}
 @endsection
 
