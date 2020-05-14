@@ -5,7 +5,6 @@ namespace App\Models;
 use App\Lib\Traits\Attributes\DateReadable;
 use App\Lib\Traits\Attributes\ExcerptBySubstring;
 use App\Lib\Traits\Relationships\CountRelations;
-use App\Lib\Traits\SlugScope;
 use App\Lib\Traits\TableNameAccessor;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
@@ -42,7 +41,6 @@ class Category extends Model
 {
     use CountRelations;
     use TableNameAccessor;
-    use SlugScope;
 
     use DateReadable;
     use ExcerptBySubstring;
