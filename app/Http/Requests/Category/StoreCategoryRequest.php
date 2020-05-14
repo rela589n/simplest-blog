@@ -18,7 +18,7 @@ class StoreCategoryRequest extends FormRequest
     public function rules(CategoryRulesContainer $rules)
     {
         $rules = $rules->getRules();
-        $rules['uri_alias'][] = Rule::unique(Category::tableName());
+        $rules['uri_alias'][] = Rule::unique('categories');
 
         return $rules;
     }

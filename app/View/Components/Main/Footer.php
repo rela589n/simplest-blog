@@ -2,7 +2,6 @@
 
 namespace App\View\Components\Main;
 
-use App\Models\VisitorMeta;
 use Illuminate\Support\Facades\DB;
 use Illuminate\View\Component;
 
@@ -10,7 +9,7 @@ class Footer extends Component
 {
     public function visits()
     {
-        return DB::table(VisitorMeta::tableName())
+        return DB::table('visitors')
             ->select('browser', DB::raw('count(*) as total'))
             ->groupBy('browser')
             ->get();

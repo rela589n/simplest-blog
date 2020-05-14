@@ -30,7 +30,7 @@ class UpdateCategoryRequest extends FormRequest
     public function rules(CategoryRulesContainer $rules)
     {
         $rules = $rules->getRules();
-        $rules['uri_alias'][] = Rule::unique(Category::tableName())
+        $rules['uri_alias'][] = Rule::unique('categories')
             ->ignore($this->categoryId());
 
         return $rules;

@@ -18,7 +18,7 @@ class StorePostRequest extends FormRequest
     public function rules(PostRulesContainer $rules)
     {
         $rules = $rules->getRules();
-        $rules['uri_alias'][] = Rule::unique(Post::tableName());
+        $rules['uri_alias'][] = Rule::unique('posts');
         $rules['image'][] = 'required';
 
         return $rules;

@@ -32,7 +32,7 @@ class UpdatePostRequest extends FormRequest
         $rules = $rules->getRules();
 
         $rules['image'][] = 'sometimes';
-        $rules['uri_alias'][] = Rule::unique(Post::tableName())
+        $rules['uri_alias'][] = Rule::unique('posts')
             ->ignore($this->blogPostId());
 
         return $rules;
