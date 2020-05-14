@@ -25,6 +25,6 @@ class AuthorName implements Rule
      */
     public function message()
     {
-        return 'Please, enter the name, which contains of two words each one capitalize.';
+        return trans('validation.custom.author-name');
     }
 }

@@ -133,6 +133,8 @@ return [
         'attribute-name' => [
             'rule-name' => 'custom-message',
         ],
+        'uri-slug' => 'Uri slug is invalid!',
+        'author-name' => 'Please, enter the name, which contains of two words each one capitalize.',
     ],
 
     /*

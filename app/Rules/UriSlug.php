@@ -25,6 +25,6 @@ class UriSlug implements Rule
      */
     public function message()
     {
-        return 'Uri slug is invalid!';
+        return trans('validation.custom.uri-slug');
     }
 }
