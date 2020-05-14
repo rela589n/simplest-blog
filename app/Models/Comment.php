@@ -16,7 +16,7 @@ use Illuminate\Support\Str;
  * @property int $commentable_id
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \Illuminate\Database\Eloquent\Model|\Eloquent $commentable
+ * @property-read Model|\Eloquent $commentable
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Comment newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Comment newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Comment query()
@@ -30,6 +30,8 @@ use Illuminate\Support\Str;
  * @mixin \Eloquent
  * @property-read mixed $date_readable
  * @property-read mixed $author_image_url
+ * @property-read mixed $commentable_link
+ * @property-read mixed $excerpt
  */
 class Comment extends Model
 {
