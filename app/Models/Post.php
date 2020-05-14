@@ -4,7 +4,6 @@ namespace App\Models;
 
 use App\Lib\Traits\Attributes\DateReadable;
 use App\Lib\Traits\Attributes\ExcerptBySubstring;
-use App\Lib\Traits\Relationships\CommentsRelation;
 use App\Lib\Traits\Relationships\CountRelations;
 use App\Lib\Traits\SlugScope;
 use App\Lib\Traits\TableNameAccessor;
@@ -46,7 +45,6 @@ use Illuminate\Support\Str;
 class Post extends Model
 {
     use CountRelations;
-    use CommentsRelation;
     use TableNameAccessor;
     use SlugScope;
     use DateReadable;
@@ -75,5 +73,15 @@ class Post extends Model
     public function getCommentsCountReadableAttribute()
     {
         return $this->comments_count.  ' ' . Str::plural('comment', $this->comments_count);
+    }
+
+    public function comments()
+    {
+        return $this->morphMany(Comment::class, 'commentable');
+    }
+
+    public function getCommentsCountAttribute($count)
+    {
+        return $this->getRelationsCount('comments', $count);
     }
 }

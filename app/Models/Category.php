@@ -4,7 +4,6 @@ namespace App\Models;
 
 use App\Lib\Traits\Attributes\DateReadable;
 use App\Lib\Traits\Attributes\ExcerptBySubstring;
-use App\Lib\Traits\Relationships\CommentsRelation;
 use App\Lib\Traits\Relationships\CountRelations;
 use App\Lib\Traits\SlugScope;
 use App\Lib\Traits\TableNameAccessor;
@@ -42,8 +41,6 @@ use Illuminate\Support\Str;
 class Category extends Model
 {
     use CountRelations;
-    use CommentsRelation;
-
     use TableNameAccessor;
     use SlugScope;
 
@@ -57,6 +54,16 @@ class Category extends Model
     public function posts()
     {
         return $this->hasMany(Post::class);
+    }
+
+    public function comments()
+    {
+        return $this->morphMany(Comment::class, 'commentable');
+    }
+
+    public function getCommentsCountAttribute($count)
+    {
+        return $this->getRelationsCount('comments', $count);
     }
 
     public function getPostsCountAttribute($count)
