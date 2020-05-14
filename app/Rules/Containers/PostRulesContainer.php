@@ -7,7 +7,7 @@ namespace App\Rules\Containers;
 use App\Models\Category;
 use App\Rules\UriSlug;
 
-class PostRulesContainer implements RulesContainerInterface
+class PostRulesContainer
 {
     public function getRules()
     {

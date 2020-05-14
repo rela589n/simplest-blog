@@ -4,7 +4,7 @@ namespace App\Rules\Containers;
 
 use App\Rules\UriSlug;
 
-class CategoryRulesContainer implements RulesContainerInterface
+class CategoryRulesContainer
 {
     /**
      * Get the validation rules that apply to the request.
