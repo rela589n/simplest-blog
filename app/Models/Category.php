@@ -6,6 +6,7 @@ use App\Lib\Traits\Attributes\DateReadable;
 use App\Lib\Traits\Attributes\ExcerptBySubstring;
 use App\Lib\Traits\Relationships\CountRelations;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Str;
 
 /**
@@ -35,6 +36,8 @@ use Illuminate\Support\Str;
  * @property-read mixed $date_readable
  * @property-read mixed $posts_count_readable
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Category whereSlug($slug)
+ * @property int $user_id
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Category whereUserId($value)
  */
 class Category extends Model
 {
@@ -70,5 +73,10 @@ class Category extends Model
     public function getPostsCountReadableAttribute()
     {
         return $this->posts_count . ' ' . Str::plural('post', $this->posts_count);
+    }
+
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
     }
 }
