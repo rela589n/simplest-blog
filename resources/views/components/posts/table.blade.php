@@ -21,14 +21,23 @@
                 <td><p>{{ $post->excerpt }}</p></td>
                 <td class="no-wrap">{{ $post->uri_alias }}</td>
                 <td class="no-wrap">
-                    <a href="{{ route('dashboard.posts.edit', $post) }}"><i class="far fa-edit"></i></a>
-                    <a href="{{ route('dashboard.posts.destroy', $post) }}"
-                       onclick="event.preventDefault(); $('#dashboard-post-delete-{{$post->id}}').submit();">
-                        <i class="fas fa-trash-alt"></i>
-                    </a>
-                    <x-delete-form
-                        :id="'dashboard-post-delete-'. $post->id"
-                        :action="route('dashboard.posts.destroy', $post)"/>
+                    @can('update', $post)
+                        <a href="{{ route('dashboard.posts.edit', $post) }}"><i class="far fa-edit"></i></a>
+                    @elsecan('view', $post)
+                        <a href="{{ route('main.posts.show', ['post' => $post->uri_alias]) }}">
+                            <i class="far fa-eye"></i>
+                        </a>
+                    @endcan
+
+                    @can('delete', $post)
+                        <a href="{{ route('dashboard.posts.destroy', $post) }}"
+                           onclick="event.preventDefault(); $('#dashboard-post-delete-{{$post->id}}').submit();">
+                            <i class="fas fa-trash-alt"></i>
+                        </a>
+                        <x-delete-form
+                            :id="'dashboard-post-delete-'. $post->id"
+                            :action="route('dashboard.posts.destroy', $post)"/>
+                    @endcan
                 </td>
             </tr>
         @endforeach
