@@ -22,14 +22,19 @@
                 <td class="no-wrap">{{ $category->uri_alias }}</td>
                 <td>{{ $category->posts_count }}</td>
                 <td class="no-wrap">
-                    <a href="{{ route('dashboard.categories.edit', $category) }}"><i class="far fa-edit"></i></a>
-                    <a href="{{ route('dashboard.categories.destroy', $category) }}"
-                       onclick="event.preventDefault(); $('#dashboard-category-delete-{{$category->id}}').submit();">
-                        <i class="fas fa-trash-alt"></i>
-                    </a>
-                    <x-delete-form
-                        :id="'dashboard-category-delete-'. $category->id"
-                        :action="route('dashboard.categories.destroy', $category)"/>
+                    @can('update', $category)
+                        <a href="{{ route('dashboard.categories.edit', $category) }}"><i class="far fa-edit"></i></a>
+                    @endcan
+
+                    @can('delete', $category)
+                        <a href="{{ route('dashboard.categories.destroy', $category) }}"
+                           onclick="event.preventDefault(); $('#dashboard-category-delete-{{$category->id}}').submit();">
+                            <i class="fas fa-trash-alt"></i>
+                        </a>
+                        <x-delete-form
+                            :id="'dashboard-category-delete-'. $category->id"
+                            :action="route('dashboard.categories.destroy', $category)"/>
+                    @endcan
                 </td>
             </tr>
         @endforeach
