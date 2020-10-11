@@ -51,3 +51,7 @@ Route::prefix('/api')
             ->only('store');
 
     });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
