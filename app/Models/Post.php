@@ -6,6 +6,7 @@ use App\Lib\Traits\Attributes\DateReadable;
 use App\Lib\Traits\Attributes\ExcerptBySubstring;
 use App\Lib\Traits\Relationships\CountRelations;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Str;
 
 /**
@@ -39,6 +40,9 @@ use Illuminate\Support\Str;
  * @property-read mixed $comments_count_readable
  * @property-read mixed $date_readable
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Post whereSlug($slug)
+ * @property int $user_id
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Post whereUserId($value)
+ * @property-read \App\Models\User $user
  */
 class Post extends Model
 {
@@ -68,7 +72,7 @@ class Post extends Model
 
     public function getCommentsCountReadableAttribute()
     {
-        return $this->comments_count.  ' ' . Str::plural('comment', $this->comments_count);
+        return $this->comments_count.' '.Str::plural('comment', $this->comments_count);
     }
 
     public function comments()
@@ -79,5 +83,10 @@ class Post extends Model
     public function getCommentsCountAttribute($count)
     {
         return $this->getRelationsCount('comments', $count);
+    }
+
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
     }
 }
