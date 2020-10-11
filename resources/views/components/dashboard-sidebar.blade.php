@@ -34,6 +34,10 @@
                                        href="{{ route('dashboard.posts.index') }}">All posts</a>
                                 </li>
                                 <li class="nav-item">
+                                    <a class="nav-link @ifroute('posts.own') active @endifroute"
+                                       href="{{ route('dashboard.posts.own') }}">Your posts</a>
+                                </li>
+                                <li class="nav-item">
                                     <a class="nav-link  @ifroute('posts.create') active @endifroute"
                                        href="{{ route('dashboard.posts.create') }}">Add new</a>
                                 </li>

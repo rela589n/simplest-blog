@@ -25,6 +25,9 @@ Route::prefix('/dashboard')
         Route::resource('posts', 'PostsController')
             ->only(['create', 'edit', 'update', 'destroy', 'store', 'index']);
 
+        Route::get('posts/own', 'PostsController@own')
+            ->name('posts.own');
+
         Route::view('/', 'pages.dashboard.home')->name('home');
     });
 

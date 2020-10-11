@@ -18,6 +18,16 @@ class PostsController extends Controller
         return view('pages.dashboard.posts.index', compact('posts'));
     }
 
+    public function own()
+    {
+        $posts = Post
+            ::byUser(\Auth::user())
+            ->orderBy('id', 'DESC')
+            ->paginate(10);
+
+        return view('pages.dashboard.posts.own', compact('posts'));
+    }
+
     public function create()
     {
         $categories = Category::all();

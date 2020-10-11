@@ -43,6 +43,7 @@ use Illuminate\Support\Str;
  * @property int $user_id
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Post whereUserId($value)
  * @property-read \App\Models\User $user
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Post byUser(\App\Models\User $user)
  */
 class Post extends Model
 {
@@ -88,5 +89,14 @@ class Post extends Model
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
+    }
+
+    /**
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeByUser($query, User $user)
+    {
+        return $query->where('user_id', $user->id);
     }
 }
