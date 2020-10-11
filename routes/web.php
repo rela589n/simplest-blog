@@ -52,6 +52,7 @@ Route::name('main.')
 Route::prefix('/api')
     ->name('api.')
     ->namespace('API')
+    ->middleware('auth')
     ->group(function () {
 
         Route::apiResource('comments', 'CommentsController')

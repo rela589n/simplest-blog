@@ -15,15 +15,18 @@
             <x-comments.catalogue :comments="$category->comments"/>
         </div>
 
-        <div id="comment_form">
-            <h3>Leave your comment</h3>
+        @auth
+            <div id="comment_form">
+                <h3>Leave your comment</h3>
 
-            <x-comments.form :send-action="route('api.comments.store')"
-                             :commentable-id="$category->id"
-                             commentable-type="category"
-                             send-method="POST"/>
-        </div>
-
+                <x-comments.form :send-action="route('api.comments.store')"
+                                 :commentable-id="$category->id"
+                                 commentable-type="category"
+                                 send-method="POST"/>
+            </div>
+        @else
+            <a href="{{ route('login') }}">Log in to leave comment</a>
+        @endauth
         <div class="cleaner"></div>
     </div>
 @endsection
