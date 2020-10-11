@@ -13,6 +13,8 @@ class PostsController extends Controller
 {
     public function index()
     {
+        $this->authorize('viewAny', Post::class);
+
         $posts = Post::orderBy('id', 'DESC')->paginate(10);
 
         return view('pages.dashboard.posts.index', compact('posts'));
@@ -30,6 +32,8 @@ class PostsController extends Controller
 
     public function create()
     {
+        $this->authorize('create', Post::class);
+
         $categories = Category::all();
 
         return view('pages.dashboard.posts.create', compact('categories'));
@@ -37,6 +41,8 @@ class PostsController extends Controller
 
     public function store(StorePostRequest $request)
     {
+        $this->authorize('create', Post::class);
+
         $attributes = $request->validated();
         $attributes['image_path'] = $this->storeImage($attributes['image']);
 
@@ -47,6 +53,8 @@ class PostsController extends Controller
 
     public function edit(Post $post)
     {
+        $this->authorize('update', $post);
+
         $categories = Category::all();
 
         return view('pages.dashboard.posts.edit', compact('post', 'categories'));
@@ -54,13 +62,15 @@ class PostsController extends Controller
 
     public function update(UpdatePostRequest $request)
     {
+        $post = $request->blogPost();
         $attributes = $request->validated();
+
+        $this->authorize('update', $post);
 
         if (isset($attributes['image'])) {
             $attributes['image_path'] = $this->storeImage($attributes['image']);
         }
 
-        $post = $request->blogPost();
         $post->update($attributes);
 
         return redirect()->route('main.posts.show', ['post' => $post->uri_alias]);
@@ -68,7 +78,11 @@ class PostsController extends Controller
 
     public function destroy($id)
     {
-        Post::destroy($id);
+        $post = Post::findOrFail($id);
+
+        $this->authorize('delete', $post);
+
+        $post->delete();
 
         return redirect()->back();
     }
