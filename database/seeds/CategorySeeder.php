@@ -14,20 +14,26 @@ class CategorySeeder extends Seeder
      */
     public function run()
     {
-        Category::create([
-            'name' => 'Uncategorized',
-            'description' => 'Posts without specified category.',
-            'uri_alias' => 'uncategorized'
-        ]);
+        Category::create(
+            [
+                'name'        => 'Uncategorized',
+                'description' => 'Posts without specified category.',
+                'uri_alias'   => 'uncategorized',
+                'user_id'     => 1,
+            ]
+        );
 
         $faker = Faker\Factory::create();
 
         for ($i = 1; $i < self::CATEGORIES_LIMIT; ++$i) {
-            Category::create([
-                'name' => $faker->realText(15),
-                'description' => $faker->realText(300),
-                'uri_alias' => $faker->unique()->slug(2)
-            ]);
+            Category::create(
+                [
+                    'name'        => $faker->realText(15),
+                    'description' => $faker->realText(300),
+                    'uri_alias'   => $faker->unique()->slug(2),
+                    'user_id'     => $faker->numberBetween(1, UsersSeeder::limit()),
+                ]
+            );
         }
     }
 }

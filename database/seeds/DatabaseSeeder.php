@@ -9,10 +9,10 @@ class DatabaseSeeder extends Seeder
      *
      * @return void
      */
-    public function run()
+    public function run(): void
     {
-        $this->call(CategorySeeder::class);
         $this->call(UsersSeeder::class);
+        $this->call(CategorySeeder::class);
         $this->call(PostSeeder::class);
         $this->call(CommentSeeder::class);
         $this->call(VisitorsMetaSeeder::class);
