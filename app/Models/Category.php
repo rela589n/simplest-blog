@@ -38,6 +38,8 @@ use Illuminate\Support\Str;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Category whereSlug($slug)
  * @property int $user_id
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Category whereUserId($value)
+ * @property-read \App\Models\User $user
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Category byUser(\App\Models\User $user)
  */
 class Category extends Model
 {
@@ -79,4 +81,14 @@ class Category extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    /**
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeByUser($query, User $user)
+    {
+        return $query->where('user_id', $user->id);
+    }
+
 }

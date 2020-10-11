@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Category\StoreCategoryRequest;
 use App\Http\Requests\Category\UpdateCategoryRequest;
 use App\Models\Category;
+use Illuminate\Support\Facades\Auth;
 
 class CategoriesController extends Controller
 {
@@ -16,6 +17,16 @@ class CategoriesController extends Controller
         $categories = Category::withCount('posts')->orderBy('id', 'DESC')->paginate(7);
 
         return view('pages.dashboard.categories.index', compact('categories'));
+    }
+
+    public function own()
+    {
+        $categories = Category::byUser(Auth::user())
+            ->withCount('posts')
+            ->orderBy('id', 'DESC')
+            ->paginate(7);
+
+        return view('pages.dashboard.categories.own', compact('categories'));
     }
 
     public function create()

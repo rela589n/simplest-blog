@@ -22,6 +22,9 @@ Route::prefix('/dashboard')
         Route::resource('categories', 'CategoriesController')
             ->only(['create', 'edit', 'update', 'destroy', 'store', 'index']);
 
+        Route::get('categories/own', 'CategoriesController@own')
+            ->name('categories.own');
+
         Route::resource('posts', 'PostsController')
             ->only(['create', 'edit', 'update', 'destroy', 'store', 'index']);
 

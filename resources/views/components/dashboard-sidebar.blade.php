@@ -58,6 +58,10 @@
                                        href="{{ route('dashboard.categories.index') }}">All categories</a>
                                 </li>
                                 <li class="nav-item">
+                                    <a class="nav-link @ifroute('categories.own') active @endifroute"
+                                       href="{{ route('dashboard.categories.own') }}">Your categories</a>
+                                </li>
+                                <li class="nav-item">
                                     <a class="nav-link @ifroute('categories.create') active @endifroute"
                                        href="{{ route('dashboard.categories.create') }}">Add new</a>
                                 </li>
