@@ -40,7 +40,10 @@ class CategoriesController extends Controller
     {
         $this->authorize('create', Category::class);
 
-        Category::create($request->validated());
+        $attributes = $request->validated();
+        $attributes['user_id'] = \Auth::id();
+
+        Category::create($attributes);
 
         return redirect()->route('dashboard.categories.index');
     }

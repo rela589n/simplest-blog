@@ -58,7 +58,8 @@ class Post extends Model
         'content',
         'uri_alias',
         'image_path',
-        'category_id'
+        'category_id',
+        'user_id',
     ];
 
     public function category()

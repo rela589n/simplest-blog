@@ -50,7 +50,7 @@ class Category extends Model
 
     protected $excerptAttribute = 'description';
 
-    protected $fillable = ['name', 'description', 'uri_alias'];
+    protected $fillable = ['name', 'description', 'uri_alias', 'user_id'];
 
     public function posts()
     {

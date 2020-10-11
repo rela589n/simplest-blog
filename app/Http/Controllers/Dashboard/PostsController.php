@@ -45,6 +45,7 @@ class PostsController extends Controller
 
         $attributes = $request->validated();
         $attributes['image_path'] = $this->storeImage($attributes['image']);
+        $attributes['user_id'] = \Auth::id();
 
         Post::create($attributes);
 
