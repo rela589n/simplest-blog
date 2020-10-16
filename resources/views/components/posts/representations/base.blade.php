@@ -22,5 +22,12 @@
     </div>
 
     <div class="cleaner"></div>
+    <div>
+        <a href="#"
+           onclick="handleLike(event,'{{ csrf_token() }}', '{{route('api.posts.like', $post->id)}}', '#likes_count_{{$post->id}}')">
+            <i class="far fa-thumbs-up"></i></a>:
+        <span id="likes_count_{{$post->id}}">{{ $post->likes_count }}</span>
+    </div>
+    <script defer src="{{ asset('js/like-post.js') }}"></script>
 </div>
 

@@ -1,6 +1,7 @@
 @extends('layouts.root.generic')
 
 @section('head_styles')
+    <link href="{{ asset('vendor/fonts/fontawesome/css/all.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/tooplate_style.css') }}" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="{{ asset('css/nivo-slider.css') }}" type="text/css" media="screen"/>
 @endsection

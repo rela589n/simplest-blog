@@ -17,48 +17,53 @@ Route::prefix('/dashboard')
     ->name('dashboard.')
     ->namespace('Dashboard')
     ->middleware('auth')
-    ->group(function () {
+    ->group(
+        function () {
+            Route::resource('categories', 'CategoriesController')
+                ->only(['create', 'edit', 'update', 'destroy', 'store', 'index']);
 
-        Route::resource('categories', 'CategoriesController')
-            ->only(['create', 'edit', 'update', 'destroy', 'store', 'index']);
+            Route::get('categories/own', 'CategoriesController@own')
+                ->name('categories.own');
 
-        Route::get('categories/own', 'CategoriesController@own')
-            ->name('categories.own');
+            Route::resource('posts', 'PostsController')
+                ->only(['create', 'edit', 'update', 'destroy', 'store', 'index']);
 
-        Route::resource('posts', 'PostsController')
-            ->only(['create', 'edit', 'update', 'destroy', 'store', 'index']);
+            Route::get('posts/own', 'PostsController@own')
+                ->name('posts.own');
 
-        Route::get('posts/own', 'PostsController@own')
-            ->name('posts.own');
-
-        Route::view('/', 'pages.dashboard.home')->name('home');
-    });
+            Route::view('/', 'pages.dashboard.home')->name('home');
+        }
+    );
 
 Route::name('main.')
     ->namespace('Main')
-    ->group(function () {
+    ->group(
+        function () {
+            Route::resource('categories', 'CategoriesController')
+                ->only(['show', 'index'])
+                ->parameters(['categories' => 'category:uri_alias']);
 
-        Route::resource('categories', 'CategoriesController')
-            ->only(['show', 'index'])
-            ->parameters(['categories' => 'category:uri_alias']);
+            Route::resource('posts', 'PostsController')
+                ->only(['show', 'index'])
+                ->parameters(['posts' => 'post:uri_alias']);
 
-        Route::resource('posts', 'PostsController')
-            ->only(['show', 'index'])
-            ->parameters(['posts' => 'post:uri_alias']);
-
-        Route::redirect('/', '/posts')->name('home');
-    });
+            Route::redirect('/', '/posts')->name('home');
+        }
+    );
 
 Route::prefix('/api')
     ->name('api.')
     ->namespace('API')
     ->middleware('auth')
-    ->group(function () {
+    ->group(
+        function () {
+            Route::apiResource('comments', 'CommentsController')
+                ->only('store');
 
-        Route::apiResource('comments', 'CommentsController')
-            ->only('store');
-
-    });
+            Route::post('/posts/{post}/likes', 'Posts\PostLikesController@like')
+                ->name('posts.like');
+        }
+    );
 
 Auth::routes();
 

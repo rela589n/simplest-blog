@@ -180,6 +180,7 @@ return [
         App\Providers\BladeDirectivesServiceProvider::class,
         App\Providers\IncludesServiceProvider::class,
         App\Providers\CollectionMacroProvider::class,
+        App\Providers\MorphMapsProvider::class,
     ],
 
     /*

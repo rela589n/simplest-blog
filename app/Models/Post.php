@@ -5,8 +5,10 @@ namespace App\Models;
 use App\Lib\Traits\Attributes\DateReadable;
 use App\Lib\Traits\Attributes\ExcerptBySubstring;
 use App\Lib\Traits\Relationships\CountRelations;
+use App\Like;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Support\Str;
 
 /**
@@ -44,6 +46,8 @@ use Illuminate\Support\Str;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Post whereUserId($value)
  * @property-read \App\Models\User $user
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Post byUser(\App\Models\User $user)
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Like[] $likes
+ * @property-read int|null $likes_count
  */
 class Post extends Model
 {
@@ -90,6 +94,14 @@ class Post extends Model
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
+    }
+
+    /**
+     * @return MorphMany|Like
+     */
+    public function likes(): MorphMany
+    {
+        return $this->morphMany(Like::class, 'likeable');
     }
 
     /**
